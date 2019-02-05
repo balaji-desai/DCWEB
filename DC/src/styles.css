@@ -1,0 +1,22 @@
+/* You can add global styles to this file, and also import other style files */
+.custom-class {
+    top: 0;
+    z-index: 2002;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #000000ba;
+    border-radius: 3px;
+  }
+.align-center{
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+}

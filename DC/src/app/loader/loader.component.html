@@ -1,0 +1,10 @@
+<ng-template #customLoadingTemplate>
+  <div class="custom-class">
+    <h3>
+      <!-- <img src="../../assets/img/default-logo.jpg"/> -->
+    </h3>
+  </div>
+</ng-template>
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '0px',fullScreenBackdrop:true}" [template]="customLoadingTemplate"></ngx-loading>
+
+<!-- <div id="preloader" [hidden]="!loading"></div> -->

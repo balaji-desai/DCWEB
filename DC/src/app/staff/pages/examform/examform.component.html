@@ -1,0 +1,108 @@
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Exam Form</h1>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<form role="form" (ngSubmit)="loading  = true;CreatExamform()" [formGroup]="ExamForm">
+    <div class="row">
+        <div class="row">
+            <div class="col-md-4 col-lg-4">
+                <div class="form-group">
+                    <label>Form Type:</label>
+                    <select (change)="resetControls()" class="form-control" formControlName="FormTypeId">
+                                <option value="0">select</option>
+                                  <option *ngFor="let frm of formtype" [ngValue]="frm.FormTypeId">{{frm.Name}}</option>
+                              </select>
+                    <span style="color: red">{{_msg.FormTypeId}}</span>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4">
+                    <div class="form-group">
+                        <label>Year:</label>
+                        <select class="form-control" formControlName="YearId">
+                          <option value="0">select</option>
+                            <option *ngFor="let yr of year" [ngValue]="yr.YearId">{{yr.Name}}</option>
+                        </select>
+                        <span style="color: red">{{_msg.YearId}}</span>
+                    </div>
+                </div>
+                <div *ngIf="KTEnabled" class="col-lg-4 col-md-4">
+                        <div class="form-group">
+                            <label>Semister:</label>
+                            <select class="form-control" formControlName="SemisterId">
+                              <option value="0">select</option>
+                                <option *ngFor="let sem of currentsemister" [ngValue]="sem.SemisterId">{{sem.Name}}</option>
+                            </select>
+                            <span style="color: red">{{_msg.SemisterId}}</span>
+                        </div>
+                    </div>                
+        </div>
+        <!-- User Block -->
+        <div class="row">
+            <div class="col-lg-4 col-md-4">
+                <div class="form-group">
+                    <label>Department:</label>
+                    <select name="Department" class="form-control" formControlName="DepartmentId">
+                  <option value="0">select</option>
+                  <option *ngFor="let dept of departments" [ngValue]="dept.DepartmentId">{{dept.Name}}</option>
+              </select>
+                    <span style="color: red">{{_msg.DepartmentId}}</span>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4">
+                <label>Start Date:</label>
+                <div class="input-group">
+                    <input class="form-control" style="float:none" placeholder="Select a date" ngx-mydatepicker name="FillStartDate" (dateChanged)="onStartDateCahnge($event)"
+                        formControlName="FillStartDate" [options]="dateOptions" #sdp="ngx-mydatepicker" />
+
+                    <span class="input-group-btn">
+                      <button type="button" class="btn btn-default" (click)="sdp.clearDate()">
+                          <i class="glyphicon glyphicon-remove"></i>
+                      </button>
+                      <button type="button" class="btn btn-default" (click)="sdp.toggleCalendar()">
+                          <i class="glyphicon glyphicon-calendar"></i>
+                      </button>
+                  </span>
+                </div>
+                <span style="color: red">{{_msg.FillStartDate}}</span>
+            </div>
+            <div class="col-lg-4 col-md-4">
+                <label>Last Date:</label>
+                <div class="input-group">
+                    <input class="form-control" style="float:none" placeholder="Select a date" ngx-mydatepicker name="FillEndDate" formControlName="FillEndDate"
+                        [options]="enddateOptions" #dp="ngx-mydatepicker" />
+
+                    <span class="input-group-btn">
+                      <button type="button" class="btn btn-default" (click)="dp.clearDate()">
+                          <i class="glyphicon glyphicon-remove"></i>
+                      </button>
+                      <button type="button" class="btn btn-default" (click)="dp.toggleCalendar()">
+                          <i class="glyphicon glyphicon-calendar"></i>
+                      </button>
+                  </span>
+                </div>
+                <span style="color: red">{{_msg.FillEndDate}}</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <div class="form-group">
+                    <label>Title</label>
+                    <input formControlName="Title" name="Title" class="form-control">
+                    <span style="color: red">{{_msg.Title}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <span style="color: red">{{_msg.ServerMessage}}</span>
+                <div class="button-sec">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </div>
+        <!-- User Block end -->
+    </div>
+</form>
+<app-loader [loading]="loading"></app-loader>

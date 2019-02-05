@@ -1,0 +1,124 @@
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Dashboard</h1>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+  <!-- /.panel-heading -->
+  <div *ngIf="dashboard.ACK == false && dashboard.Correction == false" class="panel-body">
+    <div class="alert alert-warning">
+      Profile verification is pending. go through it by 
+      <a [routerLink]="['/','student','profile']">clicking here</a>
+      and Acknowledge. Details are 
+      <button type="button"  (click)="SendResponce(true)" class="btn btn-outline btn-success">right</button>
+        or 
+      <button type="button" (click)="ACKWrongClick()" class="btn btn-outline btn-danger">wrong</button>
+    </div>
+  </div>
+  <div *ngIf="dashboard.Correction == true" class="panel-body">
+    <div class="alert alert-warning">
+      Profile Send for Correction.
+    </div>
+  </div>
+  <div id="ackmodel" data-controls-modal="ackmodel" data-backdrop="static" data-keyboard="false" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+    
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Reason</h4>
+          </div>
+          <div class="modal-body">
+            <form [formGroup]="ACK" (ngSubmit)="loading  = true;SendResponce(false);">
+                
+                <div class="form-group">
+                    <label>Reason</label>
+                    <textarea formControlName="Reason" name="Reason" class="form-control">
+                    </textarea>
+                    <span style="color: red">{{_msg.Reason}}</span>
+              </div>
+              <span style="color: red">{{_msg.ServerMessage}}</span>
+              <div class="modal-footer">
+                  <div class="button-sec">
+                      <button type="submit" class="btn btn-primary">Ok</button>
+                      <button type="button" (click)="closeACK()" class="btn btn-primary">Cancel</button>
+                  </div>
+              </div>
+            </form>
+          </div>
+        </div>
+    
+      </div>
+    </div>
+   
+        <!-- /.row -->
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Exam Notifications
+                    </div>
+                    <!-- /.panel-heading -->
+                    <div class="panel-body">
+                      <ng-template ngFor let-notify [ngForOf]="dashboard.Notifications">
+                        <div *ngIf="notify.NotificationType == 3" [ngClass]="(notify.IsView?'alert alert-success':'alert alert-warning')">
+                            {{notify.Title}}<a style="margin-left: 10px;" [routerLink]="['/student/myforms']">View Detail</a>
+                        </div>
+                        <div *ngIf="notify.NotificationType == 4" [ngClass]="(notify.IsView?'alert alert-success':'alert alert-warning')">
+                            {{notify.Title}}
+                        </div>
+                      </ng-template>
+                    </div>
+                    <!-- .panel-body -->
+                </div>
+                <!-- /.panel -->
+            </div>
+            <!-- /.col-lg-6 -->
+            <div class="col-lg-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Notice
+                    </div>
+                    <!-- /.panel-heading -->
+                    <div class="panel-body">
+                        <ng-template ngFor let-notify [ngForOf]="dashboard.Notifications">
+                            <div *ngIf="notify.NotificationType != 3 && notify.NotificationType != 4" [ngClass]="(notify.IsView?'alert alert-success':'alert alert-warning')">
+                                {{notify.Title}}<a style="margin-left: 10px;" (click)="viewNotification(notify.NotificationViewId)">View Detail</a>
+                            </div>
+                          </ng-template>
+                    </div>
+                    <!-- .panel-body -->
+                </div>
+                <!-- /.panel -->
+            </div>
+            <!-- /.col-lg-6 -->
+        </div>
+
+
+        <div id="notificationModel" class="modal fade" data-controls-modal="myModal" data-backdrop="static" data-keyboard="false" role="dialog">
+            <div class="modal-dialog">
+          
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title">Notification Details.</h4>
+                </div>
+                <div class="modal-body">
+                <div class="row">
+                  <div class="col-md-12 col-lg-12">
+                    Message :<span>
+                      {{notificationmodel?.Message}}
+                    </span>
+                  </div>
+                </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="button-sec">
+                        <button type="button" (click)="close()" class="btn btn-primary">OK</button>
+                    </div>
+                </div>
+              </div>
+          
+            </div>
+          </div>        
+    <app-loader [loading]="loading"></app-loader>

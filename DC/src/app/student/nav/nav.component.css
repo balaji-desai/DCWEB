@@ -1,0 +1,10 @@
+.profile-div{
+    height: 150px;
+    padding: 2%;
+}
+.profile-div .profile-photo{
+    border-radius: 50%;
+    width: 150px !important;
+    display: inline-block;
+    border: 0.5px solid black;
+}

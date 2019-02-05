@@ -1,0 +1,42 @@
+<div class="row">
+    <div class="col-lg-12">
+      <h1 class="page-header">Student</h1>
+    </div>
+    <!-- /.col-lg-12 -->
+  </div>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        Student Details
+        <a [routerLink]="['/admin/stdcreate']"> <i style="float: right;" class="fa fa-plus fa-fw fa-2x"></i></a>
+    </div>
+    <!-- /.panel-heading -->
+    <div class="panel-body">
+        <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Department</th>
+                    <th>Contact No.</th>
+                    <th>Email Id</th>
+                    <th>Status</th>
+                    <th>Year</th>
+                </tr>
+            </thead>
+            <tbody>
+                <ng-template ngFor let-std [ngForOf]="students">
+                <tr class="odd gradeX">
+                    <td>{{std.FullName}}</td>
+                    <td>{{std.DepartmentName}}</td>
+                    <td>{{std.ContactNo}}</td>
+                    <td class="center">{{std.Email}}</td>
+                    <td class="center">{{std.Status}}</td>
+                    <td class="center">{{std.YearName}}</td>
+                </tr>
+                </ng-template>
+            </tbody>
+        </table>
+        <!-- /.table-responsive -->
+    </div>
+    <!-- /.panel-body -->
+</div>
+<app-loader [loading]="loading"></app-loader>

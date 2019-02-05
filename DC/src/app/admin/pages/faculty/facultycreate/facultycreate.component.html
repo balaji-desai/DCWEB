@@ -1,0 +1,97 @@
+<div class="row">
+  <div class="col-lg-12">
+      <h1 class="page-header">Faculty Create</h1>
+  </div>
+  <!-- /.col-lg-12 -->
+</div>
+<form role="form" (ngSubmit)="loading  = true;CreateFaculty()" [formGroup]="Faculty">
+  <div class="row">
+      <!-- User Block -->
+      <div class="row">
+          <div class="col-lg-3 col-md-3">
+          </div>
+          <div class="col-lg-6 col-md-6 form-design">
+              <div class="form-group">
+                  <label>Institute Name : </label>
+                  <span>{{InstituteName}}</span>
+              </div>
+              <div class="form-group">
+                  <label>Full Name</label>
+                  <input formControlName="FullName" name="Full Name" class="form-control">
+                  <span style="color: red">{{_msg.FullName}}</span>
+              </div>
+              <div class="row">
+                  <div class="col-lg-7 col-md-7">
+                      <div class="form-group">
+                          <label>Email</label>
+                      </div>
+                      <div class="form-group input-group">
+                          <span class="input-group-addon">@</span>
+                          <input formControlName="EmailId" type="text" name="EmailId" class="form-control">
+                      </div>
+                      <span style="color: red">{{_msg.EmailId}}</span>
+                  </div>
+                  <div class="col-lg-5 col-md-5">
+                      <div class="form-group">
+                          <label>Contact No</label>
+                      </div>
+                      <div class="form-group input-group">
+                          <span class="input-group-addon">+91</span>
+                          <input formControlName="ContactNo" type="text" name="Contact No" class="form-control">
+                      </div>
+                      <span style="color: red">{{_msg.ContactNo}}</span>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label>Address:</label>
+                  <textarea formControlName="Address" name="Address" class="form-control"></textarea>
+                  <span style="color: red">{{_msg.Address}}</span>
+              </div>
+              <div class="form-group">
+                <label>Qualification:</label>
+                <input formControlName="Qualification" name="Qualification" class="form-control">
+                <span style="color: red">{{_msg.Qualification}}</span>
+            </div>
+              <div class="row">
+                  <div class="col-lg-6 col-md-6">
+                      <div class="form-group">
+                          <label>Department:</label>
+                          <select name="Department" class="form-control" formControlName="DepartmentId">
+                          <option>select</option>
+                          <option *ngFor="let dept of departments" [ngValue]="dept.DepartmentId">{{dept.Name}}</option>
+                      </select>
+                          <span style="color: red">{{_msg.DepartmentId}}</span>
+                      </div>
+                  </div>
+                  <div class="col-lg-6 col-md-6">
+                      <div class="form-group">
+                          <label>FacultyType:</label>
+                          <select  class="form-control" formControlName="FacultyTypeId">
+                              <option>select</option>
+                                <option *ngFor="let fact of facultytype" [ngValue]="fact.FacultyTypeId">{{fact.Name}}</option>
+                            </select>
+                          <span style="color: red">{{_msg.FacultyTypeId}}</span>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="col-lg-3 col-md-3">
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-lg-3 col-md-3">
+          </div>
+          <div class="col-lg-6 col-md-6 form-design">
+              <span style="color: red">{{_msg.ServerMessage}}</span>
+              <div class="button-sec">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="button" class="btn btn-primary">Clear</button>
+              </div>
+          </div>
+          <div class="col-lg-3 col-md-3">
+          </div>
+      </div>
+      <!-- User Block end -->
+  </div>
+</form>
+<app-loader [loading]="loading"></app-loader>
