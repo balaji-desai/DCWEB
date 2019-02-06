@@ -15,9 +15,10 @@ import { StaffComponent } from './pages/staff/staff.component';
 import { StaffcreateComponent } from './pages/staff/staffcreate/staffcreate.component';
 import { FacultyComponent } from './pages/faculty/faculty.component';
 import { FacultycreateComponent } from './pages/faculty/facultycreate/facultycreate.component';
+import { EditComponent } from './pages/student/edit/edit.component';
 
 @NgModule({
-  declarations: [DashboardComponent, NavComponent, DshComponent, UserprofileComponent, StudentComponent, CreateComponent, StaffComponent, StaffcreateComponent, FacultyComponent, FacultycreateComponent],
+  declarations: [DashboardComponent, NavComponent, DshComponent, UserprofileComponent, StudentComponent, CreateComponent, StaffComponent, StaffcreateComponent, FacultyComponent, FacultycreateComponent, EditComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,

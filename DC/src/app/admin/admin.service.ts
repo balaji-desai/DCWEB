@@ -142,6 +142,22 @@ export class AdminService {
     return promise;
   }
 
+  public EditStudent(student:Student): Promise<any> {
+    var _me = this;
+    let promise = new Promise((resolve, reject) => {
+      this.http.post(api.adminUrl +'editstudent',student
+      ).toPromise().then(
+        function (resp) {
+          resolve(resp);
+        },
+        function (error) {
+          reject(error);
+        }
+        )
+    });
+    return promise;
+  }
+
   public getFacultys(): Promise<any> {
     var _me = this;
     let promise = new Promise((resolve, reject) => {
@@ -178,6 +194,21 @@ export class AdminService {
     var _me = this;
     let promise = new Promise((resolve, reject) => {
       this.http.get(api.adminUrl +'getstudents'
+      ).toPromise().then(
+        function (resp) {
+          resolve(resp);
+        },
+        function (error) {
+          reject(error);
+        }
+        )
+    });
+    return promise;
+  }
+  public getStudentById(id): Promise<any> {
+    var _me = this;
+    let promise = new Promise((resolve, reject) => {
+      this.http.get(api.adminUrl +'getstudentbyid',{params:{studentid:id}}
       ).toPromise().then(
         function (resp) {
           resolve(resp);

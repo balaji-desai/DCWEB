@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AdminService } from "src/app/admin/admin.service";
 import { Student } from "src/app/app.model";
+import { Router } from "@angular/router";
 declare var $: any;
 
 @Component({
@@ -10,8 +11,11 @@ declare var $: any;
 })
 export class StudentComponent implements OnInit {
   public loading:boolean=false;
+  public curStudent:Student;
+  public _message:String;
   public students:Array<Student> = new Array<Student>();
-  constructor(private adminService:AdminService) { }
+  constructor(private adminService:AdminService,
+              private router:Router) { }
 
   ngOnInit() {
     this.loading = true;
@@ -37,6 +41,17 @@ export class StudentComponent implements OnInit {
         _me.loading = false;
       }
     )
+  }
+
+  public MessageOpen(std:Student){
+    this.curStudent = std;
+    this._message = std.Note;
+    $('#messageModel').modal({backdrop: 'static', keyboard: false});
+  }
+
+  public EditStudent(){
+    $('#messageModel').modal('hide');
+    this.router.navigate(['/admin/stdedit',this.curStudent.StudentId]);
   }
 
 }

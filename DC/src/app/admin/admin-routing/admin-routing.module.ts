@@ -11,6 +11,7 @@ import { FacultyComponent } from "src/app/admin/pages/faculty/faculty.component"
 import { FacultycreateComponent } from "src/app/admin/pages/faculty/facultycreate/facultycreate.component";
 import { StaffComponent } from "src/app/admin/pages/staff/staff.component";
 import { StaffcreateComponent } from "src/app/admin/pages/staff/staffcreate/staffcreate.component";
+import { EditComponent } from "src/app/admin/pages/student/edit/edit.component";
 
 const route:Routes=[
   {path:'',component:DashboardComponent,
@@ -26,6 +27,9 @@ const route:Routes=[
       },
       {
         path:"stdcreate",component:CreateComponent
+      },
+      {
+        path:"stdedit/:id",component:EditComponent
       },
       {
         path:"faculty",component:FacultyComponent
