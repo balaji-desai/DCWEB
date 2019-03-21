@@ -10,9 +10,11 @@ import { StaffRoutingModule } from "src/app/staff/staff-routing/staff-routing.mo
 import { CommonImportModule } from "src/app/FW/common-import/common-import.module";
 import { ExamformComponent } from './pages/examform/examform.component';
 import { FormacceptanceComponent } from './pages/formacceptance/formacceptance.component';
+import { HallticketmngComponent } from './pages/hallticketmng/hallticketmng.component';
+import { PushresultComponent } from './pages/pushresult/pushresult.component';
 
 @NgModule({
-  declarations: [DashboardComponent, NavComponent, DshComponent, ExamformComponent, FormacceptanceComponent],
+  declarations: [DashboardComponent, NavComponent, DshComponent, ExamformComponent, FormacceptanceComponent, HallticketmngComponent, PushresultComponent],
   imports: [
     CommonModule
     ,StaffRoutingModule

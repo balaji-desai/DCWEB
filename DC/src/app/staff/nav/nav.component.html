@@ -109,6 +109,12 @@
               <li *ngIf="userDetail.UserType.toLowerCase() == 'accountant'">
                 <a [routerLink]="['/staff/form-acceptance']"><i class="fa fa-dashboard fa-fw"></i> Form Acceptance</a>
               </li>
+              <li *ngIf="userDetail.UserType.toLowerCase() == 'exam section'">
+                <a [routerLink]="['/staff/hallticket-mng']"><i class="fa fa-dashboard fa-fw"></i> Hall Ticket</a>
+              </li>
+              <li *ngIf="userDetail.UserType.toLowerCase() == 'exam section'">
+                 <a [routerLink]="['/staff/push-result']"><i class="fa fa-dashboard fa-fw"></i> Push Result</a>
+              </li>
           </ul>
       </div>
       <!-- /.sidebar-collapse -->

@@ -57,4 +57,49 @@ export class StaffService {
     });
     return promise;
    }
+
+   SetHallTicket(studentdata):Promise<any>{
+    let promise = Promise((resolve, reject) => {
+      this.http.post(api.staffUrl +'sethallticket',studentdata
+      ).toPromise().then(
+        function (resp) {
+          resolve(resp);
+        },
+        function (error) {
+          reject(error);
+        }
+        )
+    });
+    return promise;
+   }
+
+   GetSubjects(studentdata):Promise<any>{
+    let promise = Promise((resolve, reject) => {
+      this.http.post(api.staffUrl +'getsubject',studentdata
+      ).toPromise().then(
+        function (resp) {
+          resolve(resp);
+        },
+        function (error) {
+          reject(error);
+        }
+        )
+    });
+    return promise;
+   }
+
+   VerifySTD(studentdata):Promise<any>{
+    let promise = Promise((resolve, reject) => {
+      this.http.post(api.staffUrl +'verifysubject',studentdata
+      ).toPromise().then(
+        function (resp) {
+          resolve(resp);
+        },
+        function (error) {
+          reject(error);
+        }
+        )
+    });
+    return promise;
+   }
 }
