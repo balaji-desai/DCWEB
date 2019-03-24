@@ -18,6 +18,7 @@ export class FormacceptanceComponent implements OnInit {
   studentId: any;
   formdata: any = {};
   _msg: any;
+  subjects:any=[];
   loading:boolean = false;
   searchForm:FormGroup;
   public imageUrl: String = api.imageUrl;
@@ -48,6 +49,30 @@ export class FormacceptanceComponent implements OnInit {
     this.studentService.GetForm(this.formId,this.studentId).then(
       function(data){
         _me.formdata = data;
+        if(_me.formdata.FormTypeId == 3)
+          {
+            _me.GetFailSubject(_me.formdata.FormId, _me.studentId)
+          }
+          else{
+            _me.loading = false;
+            _me.viewdetail = true;
+            $('#formView').modal({backdrop: 'static', keyboard: false});
+          }
+      },
+      function(error){
+        _me.loading = false;
+        if (error.status == 400) {
+          _me._msg["ServerMessage"] = error.error.Message;
+        }
+      }
+    )
+  }
+
+  GetFailSubject(formId,studentId){
+    var _me = this;
+    this.studentService.GetFailSubjectsById(formId, studentId).then(
+      function(data){
+        _me.subjects = data;
         _me.loading = false;
         _me.viewdetail = true;
         $('#formView').modal({backdrop: 'static', keyboard: false});

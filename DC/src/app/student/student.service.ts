@@ -118,6 +118,36 @@ export class StudentService {
     return promise;
    }
 
+   GetFailSubjects(formId){
+    let promise = Promise((resolve, reject) => {
+      this.http.get(api.studentUrl +'getfailsubjects',{params:{formid:formId}}
+      ).toPromise().then(
+        function (resp) {
+          resolve(resp);
+        },
+        function (error) {
+          reject(error);
+        }
+        )
+    });
+    return promise;
+   }
+
+   GetFailSubjectsById(formId, studentId){
+    let promise = Promise((resolve, reject) => {
+      this.http.get(api.studentUrl +'getfailsubjectsbyid',{params:{formid:formId, studentid:studentId}}
+      ).toPromise().then(
+        function (resp) {
+          resolve(resp);
+        },
+        function (error) {
+          reject(error);
+        }
+        )
+    });
+    return promise;
+   }
+
    UploadPhoto(file){
    let formData:FormData = new FormData();
    formData.append("file",file);

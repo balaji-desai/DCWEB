@@ -13,11 +13,13 @@ import { CommonImportModule } from "src/app/FW/common-import/common-import.modul
 import { ValidationmessageComponent } from './FW/validationmessage/validationmessage.component';
 import { ValidationDirective } from './FW/validation.directive';
 import { SecurePipe } from './FW/secure.pipe';
+import { NotifbuilderComponent } from './notifbuilder/notifbuilder/notifbuilder.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ValidationDirective
+    ValidationDirective,
+    NotifbuilderComponent
   ],
   imports: [
     AppRoutingModule,

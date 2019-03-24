@@ -18,6 +18,7 @@ export class FormviewComponent implements OnInit {
   formdata:any={};
   public imageUrl: String = api.imageUrl;
   private formId:number;
+  subjects:any=[];
 
   constructor(private studentService:StudentService,
     private tokenProvider:TokenProviderService,
@@ -37,6 +38,28 @@ export class FormviewComponent implements OnInit {
     this.studentService.GetForm(this.formId,0).then(
       function(data){
         _me.formdata = data;
+        if(_me.formdata.FormTypeId == 3)
+          {
+            _me.GetFailSubject(_me.formdata.FormId)
+          }
+          else{
+            _me.loading = false;
+          }
+      },
+      function(error){
+        _me.loading = false;
+        if (error.status == 400) {
+          _me._msg["ServerMessage"] = error.error.Message;
+        }
+      }
+    )
+  }
+
+  GetFailSubject(formId){
+    var _me = this;
+    this.studentService.GetFailSubjects(formId).then(
+      function(data){
+        _me.subjects = data;
         _me.loading = false;
       },
       function(error){

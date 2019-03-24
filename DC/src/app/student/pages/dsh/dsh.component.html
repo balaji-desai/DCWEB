@@ -65,7 +65,7 @@
                             {{notify.Title}}<a style="margin-left: 10px;" [routerLink]="['/student/myforms']">View Detail</a>
                         </div>
                         <div *ngIf="notify.NotificationType == 4" [ngClass]="(notify.IsView?'alert alert-success':'alert alert-warning')">
-                            {{notify.Title}}
+                            {{notify.Title}}<a style="margin-left: 10px;" [routerLink]="['/student/myforms']">View Detail</a>
                         </div>
                       </ng-template>
                     </div>

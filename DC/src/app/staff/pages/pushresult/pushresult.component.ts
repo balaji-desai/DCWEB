@@ -203,12 +203,34 @@ export class PushresultComponent implements OnInit {
     $('#myModal').modal({backdrop: 'static', keyboard: false});
   }
 
-  pushResult(rec){
+  pushResult(rec,index){
     var _me = this;
     rec.LaunchDate = toDateModel(rec.startDate.date);
     this.staffService.VerifySTD(rec).then(
-      function(){
-        
+      function(data){
+        if(data.Code == 0)
+          {
+            rec.SubjectList.forEach(item => {
+            var respdata =  data.Responce.filter((x)=>x.Id == item.SubjectId).map(function(el) {
+              return el.Value;
+          });
+          if(respdata && respdata.length > 0)
+            {
+              item.Remark = "Invalid Seat No: "+respdata.join(",");
+            }
+            else{
+              item.Remark = "";
+            }
+        });
+              
+            _me.EditRecord(rec);
+          }
+          else{
+            _me.ResultArr.splice(index,1);
+            _me._msg["ServerMessage"] = 'Result Push Successfuly.';
+            $('#popupmodel').modal({backdrop: 'static', keyboard: false});
+          }
+          _me.loading = false;
       },
       function(error){
         _me.loading = false;

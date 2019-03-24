@@ -20,7 +20,7 @@ export class NavComponent implements OnInit {
       this.userDetail = this.tokenProvider.getUser();
       this.InstituteId = this.userDetail.InstituteId;
       this.notificationService.getNotificationSubscriber().subscribe(()=>{
-        this.notificationTrigger();
+        //this.notificationTrigger();
       });
     }
   
