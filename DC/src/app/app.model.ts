@@ -90,6 +90,7 @@ export class StudentDashboardVM{
 	public Note:String;
 	public Correction:boolean;
 	public Notifications:Array<NotificationView>;
+	public StudentAcademicDetails:any;
 }
 
 export class Subject{

@@ -102,4 +102,34 @@ export class StaffService {
     });
     return promise;
    }
+
+   GetFormStatus():Promise<any>{
+    let promise = Promise((resolve, reject) => {
+      this.http.get(api.staffUrl +'getformstatus'
+      ).toPromise().then(
+        function (resp) {
+          resolve(resp);
+        },
+        function (error) {
+          reject(error);
+        }
+        )
+    });
+    return promise;
+   }
+
+   GetDashDet(detailtype):Promise<any>{
+    let promise = Promise((resolve, reject) => {
+      this.http.get(api.staffUrl +'getdashboarddet',{params:{detailtype:detailtype}}
+      ).toPromise().then(
+        function (resp) {
+          resolve(resp);
+        },
+        function (error) {
+          reject(error);
+        }
+        )
+    });
+    return promise;
+   }
 }

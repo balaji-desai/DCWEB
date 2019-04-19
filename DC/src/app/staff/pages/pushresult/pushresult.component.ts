@@ -19,6 +19,7 @@ declare var $: any;
 })
 export class PushresultComponent implements OnInit {
   _msg:any;
+  _msgpopup:any;
   subjectDetail:any;
   ResultArr=[];
   @ViewChild('dp') endDate: NgxMyDatePickerDirective;
@@ -37,6 +38,7 @@ export class PushresultComponent implements OnInit {
 
   ngOnInit() {
     this._msg = {};
+    this._msgpopup = {};
     this.ResultArr = [];
      var startdatetime = new Date();
     this.dateOptions = {
@@ -227,7 +229,7 @@ export class PushresultComponent implements OnInit {
           }
           else{
             _me.ResultArr.splice(index,1);
-            _me._msg["ServerMessage"] = 'Result Push Successfuly.';
+            _me._msgpopup["ServerMessage"] = 'Result Push Successfuly.';
             $('#popupmodel').modal({backdrop: 'static', keyboard: false});
           }
           _me.loading = false;
