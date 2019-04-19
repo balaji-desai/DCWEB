@@ -28,6 +28,21 @@ export class FacultyService {
     return promise;
    }
 
+   GetResultAnalysis():Promise<any>{
+    let promise = Promise((resolve, reject) => {
+      this.http.get(api.facultyUrl +'getresultanalysis'
+      ).toPromise().then(
+        function (resp) {
+          resolve(resp);
+        },
+        function (error) {
+          reject(error);
+        }
+        )
+    });
+    return promise;
+   }
+
    AddSubject(subject:Subject):Promise<any>{
     let promise = Promise((resolve, reject) => {
       this.http.post(api.facultyUrl +'addsubject',subject

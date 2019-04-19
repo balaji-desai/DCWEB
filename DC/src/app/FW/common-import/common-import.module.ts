@@ -12,6 +12,7 @@ import { DCInterceptor } from "src/app/FW/DC.intercepter";
 import { HTTP_INTERCEPTORS } from "@angular/common/http";
 import { NgxMyDatePickerModule } from 'ngx-mydatepicker';
 import { SecurePipe } from "src/app/FW/secure.pipe";
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { SecurePipe } from "src/app/FW/secure.pipe";
     CommonModule,
     HttpClientModule,
     ReactiveFormsModule,
+    ChartsModule,
     NgxLoadingModule.forRoot({}),
     NgxMyDatePickerModule.forRoot()
   ],
@@ -35,7 +37,8 @@ import { SecurePipe } from "src/app/FW/secure.pipe";
     ReactiveFormsModule,
     ValidationmessageComponent, 
     NgxMyDatePickerModule,
-    SecurePipe
+    SecurePipe,
+    ChartsModule
   ],
   providers:[
   ]

@@ -9,6 +9,8 @@ import { Validators } from "@angular/forms";
 import { DropdownValidation } from "src/app/FW/customvalidation";
 import { showLineError } from "src/app/FW/error";
 import { loggedInUser } from "src/app/FW/LoginModel";
+import { ChartType, ChartOptions } from 'chart.js';
+import { Label } from 'ng2-charts';
 declare var $: any;
 
 @Component({
@@ -27,6 +29,34 @@ export class DshComponent implements OnInit {
   public year:Array<AcademicYear> = new Array<AcademicYear>();
   public semister:Array<Semister> = new Array<Semister>();
   public currentsemister:Array<Semister> = new Array<Semister>();
+  public pieChartArr = [];
+  //pie chart
+   // Pie
+   public pieChartOptions: ChartOptions = {
+    responsive: true,
+    legend: {
+      position: 'top',
+    },
+    plugins: {
+      datalabels: {
+        formatter: (value, ctx) => {
+          const label = ctx.chart.data.labels[ctx.dataIndex];
+          return label;
+        },
+      },
+    }
+  };
+  public pieChartLabels: Label[] = ['Appeared', 'Pass', 'Fail'];
+  public pieChartData: number[] = [0, 500, 100];
+  public pieChartType: ChartType = 'pie';
+  public pieChartLegend = true;
+  public pieChartColors = [
+    {
+      backgroundColor: ['rgba(255,0,0,0.3)', 'rgba(0,255,0,0.3)', 'rgba(0,0,255,0.3)'],
+    },
+  ];
+
+
   constructor(private facultyService:FacultyService,
     private adminService:AdminService,
     private fb:FormBuilder,
@@ -45,8 +75,33 @@ export class DshComponent implements OnInit {
   this.showsetup = false;
   this.buildform();
     this.GetDashboard();
+    this.GetResultAnalysis();
   }
-
+  GetResultAnalysis()
+  {
+    var _me = this;
+    this.facultyService.GetResultAnalysis().then(
+      function(data){
+        if(data != null && data.length > 0)
+          {
+            _me.pieChartArr = [];
+            data.forEach(dt => {
+              var obj = {
+                pieChartLabels : [[dt.Name,'Appeared'],[dt.Name,'Pass'],[dt.Name,'Fail']],
+                pieChartData:[dt.Appeared,dt.Pass,dt.Fail]
+              };
+              _me.pieChartArr.push(obj);
+          });
+        }
+      },
+      function(error){
+        _me.loading = false;
+        if (error.status == 400) {
+          _me._msg["ServerMessage"] = error.error.Message;
+        }
+      }
+    )
+  }
   GetDashboard(){
     var _me = this;
     this.facultyService.GetDashboard().then(
